@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import util
 
 app = Flask(__name__)
 
@@ -6,9 +7,10 @@ app = Flask(__name__)
 @app.route('/location')
 def get_location():
     response = jsonify({
-        "locations" : util.get_location_names()
+        "locations": util.get_location_names()
     })
-    return "Hello World ..."
+    response.headers('Access-Control-Allow-Origin')
+    return response
 
 
 if "__main__" == __name__:
